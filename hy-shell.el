@@ -357,21 +357,18 @@ a blog post: http://www.modernemacs.com/post/comint-highlighting/."
 (defun hy-shell--kill ()
   "Kill the Hy interpreter process."
   (interactive)
-
   (-when-let (buff (get-buffer hy-shell--buffer-name))
     (kill-buffer buff)))
 
 (defun hy-shell--kill-internal ()
   "Kill the internal Hy interpreter process."
   (interactive)
-
   (-when-let (buff (get-buffer hy-shell--buffer-name-internal))
     (kill-buffer buff)))
 
 (defun hy-shell--kill-all ()
   "Kill all Hy interpreter processes."
   (interactive)
-
   (hy-shell--kill)
   (hy-shell--kill-internal))
 
@@ -381,7 +378,6 @@ a blog post: http://www.modernemacs.com/post/comint-highlighting/."
 (defun run-hy ()
   "Startup and/or switch to a Hy interpreter process."
   (interactive)
-
   (hy-shell--with
     (switch-to-buffer-other-window (current-buffer))))
 
