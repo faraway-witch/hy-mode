@@ -250,10 +250,12 @@ Expected to be called within a Hy interpreter process buffer."
 ;;;; Commands
 
 (defun hy-shell-eval-current-form ()
-  "Send form containing point to the Hy interpreter, starting up if needed."
+  "Send form containing point to the Hy interpreter. If there is no such form,
+eval last sexpr. Starts hy-shell if needed."
   (interactive)
   (hy-shell--eval-1
-    (hy--current-form-string)))
+    (or (hy--current-form-string)
+        (hy--last-sexp-string))))
 
 (defun hy-shell-eval-last-sexp ()
   "Send the last sexp to the Hy interpreter, starting up if needed."
