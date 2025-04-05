@@ -239,7 +239,8 @@ Expected to be called within a Hy interpreter process buffer."
   (declare (indent 0))
   (let ((text-sym (gensym)))
     `(-when-let (,text-sym ,text)
-       (run-hy)
+       (unless (hy-shell--live?)
+         (run-hy))
        (hy-shell--with-live
          ;; TODO Force the initial/end cases in a nicer way if possible
          (hy-shell--send "\n")
