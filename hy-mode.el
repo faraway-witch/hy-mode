@@ -307,9 +307,11 @@ commands."
 
 (define-key hy-mode-map (kbd "C-c C-z") #'run-hy)
 
+;; Eval Commands
 (define-key hy-mode-map (kbd "C-c C-b") #'hy-shell-eval-buffer)
 (define-key hy-mode-map (kbd "C-c C-r") #'hy-shell-eval-region)
 (define-key hy-mode-map (kbd "C-c C-e") #'hy-shell-eval-last-sexp)
+(define-key hy-mode-map (kbd "C-x C-e") #'hy-shell-eval-last-sexp)
 (define-key hy-mode-map (kbd "C-M-x") #'hy-shell-eval-current-form)
 
 (define-key hy-mode-map (kbd "C-c C-d d") #'hy-describe-thing-at-point)
