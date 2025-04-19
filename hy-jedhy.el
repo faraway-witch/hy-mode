@@ -71,12 +71,15 @@
   (hy-shell--with-internal
     (if hy-jedhy--running?
         (hy-shell--notify "Jedhy should already be running")
-      (if (s-equals? hy-jedhy--startup-success-text
-                     (hy-shell--redirect-send-internal hy-jedhy--setup-code))
-          (prog1 t
-            (setq-local hy-jedhy--running? t)
-            (hy-shell--notify "Jedhy successfully started"))
-        (hy-shell--notify "Jedhy failed to start")))))
+      (let ((startup-message (hy-shell--redirect-send-internal hy-jedhy--setup-code)))
+          (if (or (s-equals? hy-jedhy--startup-success-text
+                             startup-message)
+                  (s-equals? "... ... \"Started jedhy\""
+                             startup-message))
+              (prog1 t
+                (setq-local hy-jedhy--running? t)
+                (hy-shell--notify "Jedhy successfully started"))
+            (hy-shell--notify (format "Jedhy failed to start %s" startup-message)))))))
 
 ;;; Namespace Management
 
