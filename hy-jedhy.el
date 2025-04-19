@@ -62,11 +62,10 @@
   "Text identifying successful startup of jedhy.")
 
 (defconst hy-jedhy--reset-namespace-code
-  "(setv --JEDHY (jedhy.api.API :locals- (locals) :globals- (globals) :macros- --macros--))"
+  "(--JEDHY.set-namespace :locals- (locals) :globals- (globals) :macros- _hy_macros)"
   "Text to send to make Jedhy's namespace current.")
 
 ;;; Startup
-
 (defun hy-jedhy--startup ()
   "Startup jedhy and notify its status, returning non-nil if successful."
   (hy-shell--with-internal
