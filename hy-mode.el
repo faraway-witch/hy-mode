@@ -53,7 +53,7 @@
 
 ;; See other files for configuring specific aspects of Hy, like the shell.
 
-(defvar hy-indent-size 1)
+(defvar hy-indent-size 2)
 
 (defvar hy-indent--exactly
   '("when" "unless"
@@ -187,7 +187,7 @@ commands."
              (when (eq ?\~ (char-before))
                (backward-char))
 
-             (+ (current-column) hy-indent-size))))))
+             (+ (current-column) (- hy-indent-size 1)))))))
 
 ;;;; Spec Finding
 
@@ -208,7 +208,7 @@ commands."
          (current-column))
 
         ((hy-indent--syntax->indent-spec syntax)
-         (+ (current-column) hy-indent-size))
+         (+ (current-column) (- hy-indent-size 1)))
 
         (t (hy-indent--normal calculate-lisp-indent-last-sexp))))
 
