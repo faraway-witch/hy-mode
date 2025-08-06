@@ -53,12 +53,14 @@
 
 ;; See other files for configuring specific aspects of Hy, like the shell.
 
+(defvar hy-indent-size 1)
+
 (defvar hy-indent--exactly
   '("when" "unless"
     "for" "for*" "for/a" "for/a*"
     "while"
     "except" "catch")
-  "Symbols that will have following lines indented +1 when matched.
+  "Symbols that will have following lines indented +hy-indent-size when matched.
 
 Examples:
 
@@ -74,7 +76,7 @@ Examples:
     "let"
     "with" "with/a"
     "fn" "fn/a")
-  "Symbols that will have following lines indented +1 when matched at start.
+  "Symbols that will have following lines indented +hy-indent-size when matched at start.
 
 Examples:
 
@@ -185,7 +187,7 @@ commands."
              (when (eq ?\~ (char-before))
                (backward-char))
 
-             (1+ (current-column)))))))
+             (+ (current-column) hy-indent-size)))))
 
 ;;;; Spec Finding
 
@@ -206,7 +208,7 @@ commands."
          (current-column))
 
         ((hy-indent--syntax->indent-spec syntax)
-         (1+ (current-column)))
+         (+ (current-column) hy-indent-size))
 
         (t (hy-indent--normal calculate-lisp-indent-last-sexp))))
 
