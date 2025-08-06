@@ -187,7 +187,7 @@ commands."
              (when (eq ?\~ (char-before))
                (backward-char))
 
-             (+ (current-column) hy-indent-size)))))
+             (+ (current-column) hy-indent-size))))))
 
 ;;;; Spec Finding
 
